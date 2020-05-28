@@ -32,13 +32,13 @@ with open(election_csv, 'r') as csvfile:
 
         if cand_name not in cand_list:
             cand_list.append(cand_name)
-        
-        
     
     vote_dict = {}
     for cand_name in cand_list:
         votes_per_cand = count_votes(list_of_all_votes, cand_name)
-        vote_dict[cand_name] = votes_per_cand
+        votes_perc = (votes_per_cand/count_of_votes)
+        formatted_perc = format(votes_perc, ".2%")
+        vote_dict[cand_name] = ((formatted_perc), (votes_per_cand))
 
     print_votes(count_of_votes)
     print("-----------------------")
