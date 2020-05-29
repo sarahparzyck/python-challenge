@@ -14,6 +14,9 @@ def count_votes(list_of_all_votes, cand_name):
             count += 1
     return count
 
+def print_winner(election_winner):
+    print(f"Winner: {election_winner}")
+
 election_csv = os.path.join('election_data.csv')
 with open(election_csv, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
@@ -39,10 +42,31 @@ with open(election_csv, 'r') as csvfile:
         votes_perc = (votes_per_cand/count_of_votes)
         formatted_perc = format(votes_perc, ".2%")
         vote_dict[cand_name] = ((formatted_perc), (votes_per_cand))
+        keymax = max(vote_dict, key=vote_dict.get)
 
     print_votes(count_of_votes)
     print("-----------------------")
     print(str(vote_dict))
     print("-----------------------")
-    
+    print_winner(keymax)
+    print("-----------------------")
 
+file_to_output = os.path.join("..", "PyPoll" "Election_Analysis.txt")
+
+output = "Election_Analysis.txt"
+with open(output, 'w') as textfile:
+    textfile.write(str("Election Results"))
+    textfile.write("\n")
+    textfile.write(str("----------------"))
+    textfile.write("\n")
+    textfile.write(str("Total Votes: ") + str(count_of_votes))
+    textfile.write("\n")
+    textfile.write(str("----------------"))
+    textfile.write("\n")
+    textfile.write(str(vote_dict))
+    textfile.write("\n")
+    textfile.write(str("----------------"))
+    textfile.write("\n")
+    textfile.write(str("Winner: ") + str(keymax))
+    textfile.write("\n")
+    textfile.write(str("----------------"))

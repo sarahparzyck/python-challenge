@@ -1,6 +1,12 @@
 import os
 import csv
 
+file_to_output = os.path.join("..", "PyBank", "budget_analysis.txt")
+output = "budget_analysis.txt"
+
+with open(file_to_output, "w") as txt_file:
+    txt_file.write(output)
+
 print("Financial Analysis")
 print("-----------------------")
 
@@ -17,7 +23,7 @@ def print_max(greatest_increase, date_increase):
     print(f"Greatest Increase in Profits: {date_increase} ${greatest_increase}")
 
 def print_min(greatest_decrease, date_decrease):
-    print(f"Greatest Decrease in Profits: {date_decrease} $-{greatest_decrease}")
+    print(f"Greatest Decrease in Profits: {date_decrease} ${greatest_decrease}")
 
 budget_csv = os.path.join('budget_data.csv')
 with open(budget_csv, 'r') as csvfile:
@@ -53,8 +59,21 @@ with open(budget_csv, 'r') as csvfile:
     print_average (averageChange / (count_of_months - 1))
     print_max(maxIncrease, maxDateIncrease)
     print_min(maxDecrease, minDateDecrease)
-    
 
-        
+file_to_output = os.path.join("..", "PyBank" "Budget_Analysis.txt")
 
-        
+output = "Budget_Analysis.txt"
+with open(output, 'w') as textfile:
+    textfile.write(str("Financial Analysis"))
+    textfile.write("\n")
+    textfile.write(str("----------------"))
+    textfile.write("\n")
+    textfile.write(str("Total Months: ") + str(count_of_months))
+    textfile.write("\n")
+    textfile.write(str("Total: $") + str(net_total))
+    textfile.write("\n")
+    textfile.write(str("Average Change: $") + str(averageChange / (count_of_months - 1)))
+    textfile.write("\n")
+    textfile.write(str("Greatest Increase in Profits: ") + str(maxDateIncrease) + " " + str("$") + str(maxIncrease))
+    textfile.write("\n")
+    textfile.write(str("Greatest Decrease in Profits: ") + str(minDateDecrease) + " " + str("$") + str(maxDecrease))
